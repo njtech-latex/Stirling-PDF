@@ -1,0 +1,54 @@
+---
+kind: pipeline
+type: docker
+name: spdf
+
+steps:
+  - name: publish
+    image: plugins/docker:latest
+    pull: if-not-exists
+    settings:
+      purge: false
+      dockerfile: Dockerfile-fat
+      tag:
+        - latest
+        - ${DRONE_BUILD_NUMBER}
+      username: admin
+      password:
+        from_secret: docker_password
+      insecure: true
+      registry: https://hub.keepresearch.co
+      repo: hub.keepresearch.co/deploy/spdf
+
+  - name: deploy
+    image: hub.keepresearch.co/drone/drone-ssh:latest
+    settings:
+      host:
+        from_secret: deploy_host
+      username: ubuntu
+      key:
+        from_secret: deploy_key
+      script:
+        - docker rm -f spdf-dev
+        - docker pull hub.keepresearch.co/deploy/spdf:${DRONE_BUILD_NUMBER}
+        - docker run --restart=always --name spdf-dev -p 127.0.0.1:8011:8080 -d hub.keepresearch.co/deploy/spdf:${DRONE_BUILD_NUMBER}
+
+  - name: deploy_prod
+    image: hub.keepresearch.co/drone/drone-ssh:latest
+    settings:
+      host:
+        from_secret: deploy_host
+      username: ubuntu
+      key:
+        from_secret: deploy_key
+      script:
+        - docker rm -f spdf-prod
+        - docker pull hub.keepresearch.co/deploy/spdf:${DRONE_BUILD_NUMBER}
+        - docker run --restart=always --name spdf-prod -p 127.0.0.1:8012:8080 -d hub.keepresearch.co/deploy/spdf:${DRONE_BUILD_NUMBER}
+    when:
+      event:
+      - tag
+
+
+image_pull_secrets:
+  - dockerconfig
