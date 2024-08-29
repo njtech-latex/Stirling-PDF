@@ -1,5 +1,5 @@
 # Build the application
-FROM gradle:8.7-jdk17 AS build
+FROM hub.keepresearch.co/mirror/gradle:8.7-jdk17 AS build
 
 # Set the working directory
 WORKDIR /app
@@ -8,11 +8,11 @@ WORKDIR /app
 COPY . .
 
 # Build the application with DOCKER_ENABLE_SECURITY=false
-RUN DOCKER_ENABLE_SECURITY=true \
+RUN DOCKER_ENABLE_SECURITY=false SYSTEM_DEFAULTLOCALE=zh_CN \
     ./gradlew clean build
 
 # Main stage
-FROM alpine:3.20.2
+FROM hub.keepresearch.co/mirror/alpine:3.20.2
 
 # Set Environment Variables
 ENV DOCKER_ENABLE_SECURITY=false \
@@ -22,6 +22,8 @@ ENV DOCKER_ENABLE_SECURITY=false \
     PUID=1000 \
     PGID=1000 \
     UMASK=022 \
+    SYSTEM_DEFAULTLOCALE=zh_CN \
+    LANGS=zh_CN \
     FAT_DOCKER=true \
     INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
 
@@ -37,6 +39,7 @@ RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/main" | tee -a /et
     curl \
     shadow \
     su-exec \
+    font-isas-misc \
     openssl \
     openssl-dev \
     openjdk21-jre \
