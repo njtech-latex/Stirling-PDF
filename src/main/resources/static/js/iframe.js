@@ -1,4 +1,4 @@
-(() => {
+document.addEventListener("DOMContentLoaded", () => {
   // post message to parent window
   const postmessage = (message) => window.parent.postMessage({ stirlingPDF: message }, "*");
 
@@ -12,4 +12,4 @@
 
   // observe body element
   resizeObserver.observe(document.body);
-})();
+});
