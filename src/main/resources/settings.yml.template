@@ -49,7 +49,7 @@ security:
     provider: google # Set this to your OAuth provider's name, e.g., 'google' or 'keycloak'
 
 system:
-  defaultLocale: en-US # Set the default language (e.g. 'de-DE', 'fr-FR', etc)
+  defaultLocale: zh_CN # Set the default language (e.g. 'de-DE', 'fr-FR', etc)
   googlevisibility: false # 'true' to allow Google visibility (via robots.txt), 'false' to disallow
   enableAlphaFunctionality: false # Set to enable functionality which might need more testing before it fully goes live (This feature might make no changes)
   showUpdate: false # see when a new update is available
