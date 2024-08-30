@@ -90,7 +90,9 @@ document.addEventListener("DOMContentLoaded", function () {
   if (currentMode === "on" || currentMode === "off" || currentMode === "rainbow") {
     setMode(currentMode);
   } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    setMode("on");
+    // setMode("on");
+    // 强制亮色模式
+    setMode("off");
   } else {
     setMode("off");
   }
