@@ -27,9 +27,9 @@ ENV DOCKER_ENABLE_SECURITY=false \
     FAT_DOCKER=true \
     INSTALL_BOOK_AND_ADVANCED_HTML_OPS=false
 
-RUN echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/main" | tee -a /etc/apk/repositories && \
-    echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/community" | tee -a /etc/apk/repositories && \
-    echo "@testing https://dl-cdn.alpinelinux.org/alpine/edge/testing" | tee -a /etc/apk/repositories && \
+RUN echo "@testing https://mirrors.tuna.tsinghua.edu.cn/alpine/edge/main" | tee -a /etc/apk/repositories && \
+    echo "@testing https://mirrors.tuna.tsinghua.edu.cn/alpine/edge/community" | tee -a /etc/apk/repositories && \
+    echo "@testing https://mirrors.tuna.tsinghua.edu.cn/alpine/edge/testing" | tee -a /etc/apk/repositories && \
     apk upgrade --no-cache -a && \
     apk add --no-cache \
     ca-certificates \
