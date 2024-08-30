@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let entry of entries) {
       const { width, height } = entry.contentRect;
       postmessage({ width, height });
+      setTimeout(() => postMessage({ width, height }), 100);
     }
   });
 
