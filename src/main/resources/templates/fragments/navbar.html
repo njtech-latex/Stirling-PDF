@@ -6,9 +6,9 @@
     const updateAvailable = /*[[#{settings.updateAvailable}]]*/ "";
   </script>
   <nav class="navbar navbar-expand-lg">
-    <div class="container">
+    <div style="display: flex; align-items: center; justify-content: space-between; width: 100%">
       <a id="backToHome" class="navbar-brand" th:href="@{'/'}" style="display: flex">
-        <span class="icon-text" th:text="Home">Home</span>
+        <span class="icon-text" th:data-text="#{home}" th:text="#{home}">Home</span>
       </a>
       <button
         class="navbar-toggler"

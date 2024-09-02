@@ -30,9 +30,7 @@
   flex-direction: column;
   align-items: flex-start;
   background: var(--md-sys-color-surface-5);
-  transition:
-    transform 0.3s,
-    border 0.3s;
+  transition: transform 0.3s, border 0.3s;
   transform-origin: center center;
   outline: 0px solid transparent;
 }
@@ -47,12 +45,12 @@
 }
 
 .feature-card .card-text {
-  font-size: .875rem;
+  font-size: 0.875rem;
 }
 
 .feature-card:hover {
   cursor: pointer;
-  transform: scale(1.08);
+  /* transform: scale(1.08); */
   box-shadow: var(--md-sys-elevation-2);
 }
 
@@ -79,7 +77,7 @@
 }
 
 #tool-text {
-  margin: 0.0rem 0 0 1.25rem;
+  margin: 0rem 0 0 1.25rem;
 }
 
 .card-title {
@@ -151,5 +149,5 @@
 }
 
 .hidden {
-    visibility: hidden;
+  visibility: hidden;
 }
