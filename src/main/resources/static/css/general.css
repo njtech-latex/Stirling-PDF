@@ -1,12 +1,12 @@
 #page-container {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
 }
 
-#content-wrap {
+/* #content-wrap {
   flex: 1;
-}
+} */
 
 #footer {
   bottom: 0;
@@ -95,8 +95,8 @@ html[dir="rtl"] label.form-check-label {
 
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
-    transition: background-color 600000s 0s, color 600000s 0s;
+  transition: background-color 600000s 0s, color 600000s 0s;
 }
 input[data-autocompleted] {
-    background-color: transparent !important;
+  background-color: transparent !important;
 }
