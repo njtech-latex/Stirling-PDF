@@ -30,6 +30,7 @@ ENV DOCKER_ENABLE_SECURITY=false \
 RUN echo "@testing https://mirrors.tuna.tsinghua.edu.cn/alpine/edge/main" | tee -a /etc/apk/repositories && \
     echo "@testing https://mirrors.tuna.tsinghua.edu.cn/alpine/edge/community" | tee -a /etc/apk/repositories && \
     echo "@testing https://mirrors.tuna.tsinghua.edu.cn/alpine/edge/testing" | tee -a /etc/apk/repositories && \
+    sed -i 's#https\?://dl-cdn.alpinelinux.org/alpine#https://mirrors.tuna.tsinghua.edu.cn/alpine#g' /etc/apk/repositories && \
     apk upgrade --no-cache -a && \
     apk add --no-cache \
     ca-certificates \
