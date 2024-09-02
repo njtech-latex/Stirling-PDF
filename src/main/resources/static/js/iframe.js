@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+  let loaded = false;
+
   // post message to parent window
   const postmessage = (message) => window.parent.postMessage({ stirlingPDF: message }, "*");
 
@@ -7,7 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let entry of entries) {
       const { width, height } = entry.contentRect;
       postmessage({ width, height });
-      setTimeout(() => postMessage({ width, height }), 100);
+
+      if (!loaded) {
+        setTimeout(() => {
+          postmessage({ width, height });
+          loaded = true;
+        }, 1000);
+      }
     }
   });
 
