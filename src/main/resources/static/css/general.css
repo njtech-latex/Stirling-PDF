@@ -2,6 +2,11 @@
   /* min-height: 100vh; */
   display: flex;
   flex-direction: column;
+  padding: 2rem;
+}
+
+#page-container.embed {
+  padding: 0;
 }
 
 /* #content-wrap {

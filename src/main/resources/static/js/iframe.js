@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // add embed class
+  document.getElementById("page-container").classList.add("embed");
+
+  // set loaded state
   let loaded = false;
 
   // post message to parent window
@@ -14,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
           postmessage({ width, height });
           loaded = true;
-        }, 1000);
+        }, 500);
       }
     }
   });
