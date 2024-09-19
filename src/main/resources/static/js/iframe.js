@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // add embed class
-  document.getElementById("page-container").classList.add("embed");
-
   // set loaded state
   let loaded = false;
 
@@ -14,15 +11,27 @@ document.addEventListener("DOMContentLoaded", () => {
       const { width, height } = entry.contentRect;
       postmessage({ width, height });
 
+      // keep sending message until loaded
       if (!loaded) {
-        setTimeout(() => {
+        const interval = setInterval(() => {
           postmessage({ width, height });
-          loaded = true;
-        }, 500);
+          if (loaded) clearInterval(interval);
+        }, 100);
       }
     }
   });
 
   // observe body element
   resizeObserver.observe(document.body);
+
+  // listen message from parent window
+  window.addEventListener("message", (event) => {
+    // check source and data, and loaded state
+    if (event.source === window || !event.data.stirlingPDF || loaded) return;
+    // add embed class
+    if (event.data.stirlingPDF.loaded) {
+      document.getElementById("page-container").classList.add("embed");
+      loaded = true;
+    }
+  });
 });
