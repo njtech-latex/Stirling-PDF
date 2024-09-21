@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let loaded = false;
 
   // post message to parent window
-  const postmessage = (message) => window.parent.postMessage({ stirlingPDF: message }, "*");
+  const postmessage = (message) => window.parent.postMessage({ pdf: message }, "*");
 
   // listen window width and height
   const resizeObserver = new ResizeObserver((entries) => {
@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // listen message from parent window
   window.addEventListener("message", (event) => {
     // check source and data, and loaded state
-    if (event.source === window || !event.data.stirlingPDF || loaded) return;
+    if (event.source === window || !event.data.pdf || loaded) return;
     // add embed class
-    if (event.data.stirlingPDF.loaded) {
+    if (event.data.pdf.loaded) {
       document.getElementById("page-container").classList.add("embed");
       loaded = true;
     }
