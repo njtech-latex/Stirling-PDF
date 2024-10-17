@@ -31,24 +31,7 @@ steps:
       script:
         - docker rm -f spdf-dev
         - docker pull hub.keepresearch.co/deploy/spdf:${DRONE_BUILD_NUMBER}
-        - docker run --restart=always --name spdf-dev -p 127.0.0.1:8011:8080 -d hub.keepresearch.co/deploy/spdf:${DRONE_BUILD_NUMBER}
-
-  - name: deploy_prod
-    image: hub.keepresearch.co/drone/drone-ssh:latest
-    settings:
-      host:
-        from_secret: deploy_host
-      username: ubuntu
-      key:
-        from_secret: deploy_key
-      script:
-        - docker rm -f spdf-prod
-        - docker pull hub.keepresearch.co/deploy/spdf:${DRONE_BUILD_NUMBER}
-        - docker run --restart=always --name spdf-prod -p 127.0.0.1:8012:8080 -d hub.keepresearch.co/deploy/spdf:${DRONE_BUILD_NUMBER}
-    when:
-      event:
-      - tag
-
+        - docker run --restart=always --name spdf-dev -p 127.0.0.1:8022:8080 -d hub.keepresearch.co/deploy/spdf:${DRONE_BUILD_NUMBER}
 
 image_pull_secrets:
   - dockerconfig
