@@ -23,7 +23,7 @@ textarea {
 /*    color:    #98A0AB;*/
 /*}*/
 /* Scrollbar */
-*::-webkit-scrollbar {
+/* *::-webkit-scrollbar {
   background: var(--md-sys-color-surface);
   width: 1rem;
 }
@@ -36,7 +36,7 @@ textarea {
   border-radius: 2rem;
   background-color: var(--md-sys-color-surface-5);
   border: 5px solid var(--md-sys-color-surface-5);
-}
+} */
 
 /* Alerts */
 .alert {
